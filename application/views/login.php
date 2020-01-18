@@ -33,11 +33,13 @@
 <body>
 <div class="signin-form" id="signin-form">
 	<div class="container">
+
 		<form action="<?php echo base_url('panel/login/authentication'); ?>" method="POST">
-			<img class="sign-logo" src="assets/image/signin_logo.png" alt="" width="100" height="100">
+			<img class="sign-logo" src="<?php echo base_url('assets/image/signin_logo.png'); ?>" alt="" width="100" height="100">
 			<h2>Please Sign In</h2>
 			<input type="text" class="form-control" placeholder="Enter username" name="username">
 			<input type="password" class="form-control" placeholder="Enter Password" name="password"><br>
+            <?php echo @$this->session->flashdata('msg'); ?>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 		</form>
 	</div>

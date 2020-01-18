@@ -17,11 +17,12 @@ class Login extends CI_Controller {
 		$auth['username'] = trim($this->input->post('username'));
 		$auth['password'] = $this->input->post('password');
 		$response = $this->Admin_model->authUser($auth);
-		if($response == 'valid'){
+		if($response['status']){
+			$this->session->set_userdata((array) $response['data'] );
 			redirect('panel/Dashboard');
-			pageLoad('panel/main');
 		}
 		else{
+			$this->session->set_flashdata('msg' , "Invalid Credentials");
 			redirect('login/invalid');
 		}
 	}

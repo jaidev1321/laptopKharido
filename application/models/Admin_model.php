@@ -3,12 +3,15 @@ class Admin_model extends CI_model{
 
 	public function authUser($data){
 		
-		$queryResp = $this->db->get_where('tbl_admin', $data)->num_rows();
-		if($queryResp > 0){
-			return 'valid';
+		$queryResp = $this->db->get_where('tbl_admin', $data)->row();
+		if($queryResp){
+			$return['status'] = true;
+			$return['data'] = $queryResp;
+			return $return;
 		}
 		else{
-			return 'invalid';
+			$return['status'] = false;
+			return $return;
 		}
 	}
 

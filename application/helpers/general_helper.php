@@ -10,11 +10,17 @@
       $CI->load->view('panel/layout/footer.php' , $data);
   }
 
+
+  function pre($data){
+	echo "<pre>";
+	print_r($data);
+	echo "</pre>";
+  }
   function validateLogin()
 {
-
 	$CI = & get_instance();
-	if (!$CI->session->userdata('empId')) {
+	if(!$CI->session->userdata('id')) {
+		pre($CI->session->all_userdata()); die;
 		redirect('panel/Login');
 	}
 	// else{
